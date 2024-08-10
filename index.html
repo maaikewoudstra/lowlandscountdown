@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaap's Lowlands 2024 Countdown</title>
+    <style>
+        @font-face {
+          .vt323-regular {
+  font-family: "VT323", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+        }
+        
+        :root {
+            --color-primary: #ed47d4;
+            --color-secondary: #ff9c00;
+            --color-tertiary: #fd0;
+        }
+        
+        body {
+            font-family: Pixel;
+            text-align: center;
+            background-color: #330012;
+            color: var(--color-primary);
+            margin-top: 10px;
+        }
+        
+        h1 {
+            color: var(--color-secondary);
+        }
+        
+        #countdown {
+            font-size: 2em;
+            margin-top: 5px;
+            color: var(--color-tertiary);
+        }
+        
+        #header-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <img id="header-image" src="/Users/maaikewoudstra/Downloads/PHOTO-2023-08-19-15-54-58.png" alt="Lowlands Festival">
+    <h1>Jaap's Lowlands 2024 Countdown</h1>
+    <div id="countdown"></div>
+
+    <script>
+        function updateCountdown() {
+            const festivalStart = new Date("2024-08-15T06:00:00").getTime();
+            const now = new Date().getTime();
+            const timeLeft = festivalStart - now;
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = 
+                days + " days, " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds";
+
+            if (timeLeft < 0) {
+                clearInterval(countdownTimer);
+                document.getElementById("countdown").innerHTML = "Lowlands 2024 has started!";
+            }
+        }
+
+        const countdownTimer = setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call to display the countdown immediately
+    </script>
+</body>
+</html>
